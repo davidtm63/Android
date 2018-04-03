@@ -11,16 +11,18 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback{
 
+    private Marker nuevoMarcador, viejoMarcador;
     private GoogleMap mMap;
     private EditText latitud ;
     private EditText longitud;
-    private double  lat = 0;
-    private double lon = 0;
+    private double  lat = 20 ;
+    private double lon = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,20 +36,21 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void buscar(View v){
+         nuevoMarcador.remove();
          lat = Double.parseDouble(latitud.getText().toString());
          lon = Double.parseDouble(longitud.getText().toString());
          LatLng pos;
          pos = new LatLng(lat,lon);
-         mMap.addMarker(new MarkerOptions().position(pos).title("Poscion buscada"));
+         nuevoMarcador = mMap.addMarker(new MarkerOptions().position(pos).title("Poscion buscada"));
          mMap.moveCamera(CameraUpdateFactory.newLatLng(pos));
-
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        // Add a marker in Sydney and move the camera
-
-
+        LatLng pos;
+        pos = new LatLng(lat,lon);
+        nuevoMarcador = mMap.addMarker(new MarkerOptions().position(pos).title("Poscion buscada"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(pos));
     }
 }
