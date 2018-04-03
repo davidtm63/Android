@@ -17,7 +17,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback{
 
-    private Marker nuevoMarcador, viejoMarcador;
+    private Marker nuevoMarcador;
     private GoogleMap mMap;
     private EditText latitud ;
     private EditText longitud;
